@@ -1,0 +1,285 @@
+[
+    {
+        "id": "43a218b961b791a4",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "6ef2ace206c07bc3",
+        "type": "sox-record",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "buttonStart": "msg",
+        "inputs": 1,
+        "inputSource": "2,0",
+        "manualSource": "",
+        "inputEncoding": "signed-integer",
+        "inputChannels": 1,
+        "inputRate": 16000,
+        "inputBits": 16,
+        "byteOrder": "-L",
+        "encoding": "signed-integer",
+        "channels": 1,
+        "rate": 16000,
+        "bits": 16,
+        "gain": "0",
+        "buffer": "4096",
+        "showDuration": true,
+        "durationType": "forever",
+        "durationLength": "0",
+        "silenceDetection": "nothing",
+        "silenceDuration": "2.0",
+        "silenceThreshold": "2.0",
+        "outputFormat": "file",
+        "manualPath": "/home/pi/Music/00001",
+        "debugOutput": false,
+        "x": 290,
+        "y": 80,
+        "wires": [
+            [
+                "1cfa6a0873227522"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3f1a7c52a0af897f",
+        "type": "ui_button",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "group": "0f7d6f30327fd35f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Rec",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "start",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "6ef2ace206c07bc3"
+            ]
+        ]
+    },
+    {
+        "id": "c59f246a5182a3bb",
+        "type": "ui_button",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "group": "0f7d6f30327fd35f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Stop",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "stop",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 90,
+        "y": 140,
+        "wires": [
+            [
+                "6ef2ace206c07bc3"
+            ]
+        ]
+    },
+    {
+        "id": "1cfa6a0873227522",
+        "type": "debug",
+        "z": "43a218b961b791a4",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "1c0940277f99a3af",
+        "type": "rpi-gpio in",
+        "z": "43a218b961b791a4",
+        "name": "Switch",
+        "pin": "26",
+        "intype": "up",
+        "debounce": "25",
+        "read": true,
+        "bcm": true,
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "671646a053f2433b",
+                "58ee3a66a03821ce",
+                "498e2d3d7891cbb1"
+            ]
+        ]
+    },
+    {
+        "id": "671646a053f2433b",
+        "type": "debug",
+        "z": "43a218b961b791a4",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 380,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "58ee3a66a03821ce",
+        "type": "change",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "1",
+                "fromt": "num",
+                "to": "start",
+                "tot": "str"
+            },
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "0",
+                "fromt": "num",
+                "to": "stop",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 200,
+        "y": 200,
+        "wires": [
+            [
+                "671646a053f2433b",
+                "6ef2ace206c07bc3"
+            ]
+        ]
+    },
+    {
+        "id": "498e2d3d7891cbb1",
+        "type": "rpi-gpio out",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "pin": "6",
+        "set": false,
+        "level": "1",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 700,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "468d36dff9a2aee3",
+        "type": "ui_button",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "group": "0f7d6f30327fd35f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "led2 on",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 540,
+        "y": 320,
+        "wires": [
+            [
+                "498e2d3d7891cbb1"
+            ]
+        ]
+    },
+    {
+        "id": "ee8aaccebc2a43ef",
+        "type": "ui_button",
+        "z": "43a218b961b791a4",
+        "name": "",
+        "group": "0f7d6f30327fd35f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "led2 off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "num",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 620,
+        "y": 400,
+        "wires": [
+            [
+                "498e2d3d7891cbb1"
+            ]
+        ]
+    },
+    {
+        "id": "0f7d6f30327fd35f",
+        "type": "ui_group",
+        "name": "Nahrávání a přehrávání",
+        "tab": "da82d7f6b30bb380",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "da82d7f6b30bb380",
+        "type": "ui_tab",
+        "name": "Diktafon/studio",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
